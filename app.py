@@ -6,6 +6,7 @@ A routing layer for the onboarding bot tutorial built using
 import json
 import bot
 from flask import Flask, request, make_response, render_template
+import brain
 
 pyBot = bot.Bot()
 slack = pyBot.client
@@ -117,7 +118,7 @@ def hears():
     # sends back.
     #       For more info: https://api.slack.com/events/url_verification
     if "challenge" in slack_event:
-        return make_response(slack_event["challenge"], 200, {"content_type":
+        return make_response(slack_event["challenge"], 200, {"cohintent_type":
                                                              "application/json"
                                                              })
 
@@ -133,12 +134,21 @@ def hears():
 
     # ====== Process Incoming Events from Slack ======= #
     # If the incoming request is an Event we've subcribed to
-    if "event" in slack_event:
+    #if "event" in slack_event:
         event_type = slack_event["event"]["type"]
+        print(slack_event)
+        print("team_id : " + slack_event["team_id"])
+        #print("user : " + slack_event["event"]["user"])
+        print("channel : " + slack_event["event"]["channel"])
         # Then handle the event by event_type and have your bot respond
+
+        thisBrain = brain.Brain()
+        thisBrain.sendMSG("hello fellows!!")
+
         return _event_handler(event_type, slack_event)
     # If our bot hears things that are not events we've subscribed to,
     # send a quirky but helpful error response
+
     return make_response("[NO EVENT IN SLACK REQUEST] These are not the droids\
                          you're looking for.", 404, {"X-Slack-No-Retry": 1})
 
