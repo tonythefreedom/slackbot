@@ -143,7 +143,7 @@ def hears():
         # Then handle the event by event_type and have your bot respond
 
         thisBrain = brain.Brain()
-        thisBrain.sendMSG("hello fellows!!")
+        thisBrain.sendMSG("hello fellows!! Never mind. This is Slack bot test.")
 
         return _event_handler(event_type, slack_event)
     # If our bot hears things that are not events we've subscribed to,

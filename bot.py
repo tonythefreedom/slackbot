@@ -22,14 +22,14 @@ class Bot(object):
         self.emoji = ":robot_face:"
         # When we instantiate a new bot object, we can access the app
         # credentials we set earlier in our local development environment.
-        self.oauth = {"client_id": os.environ.get("303642593938.306840783633"),
-                      "client_secret": os.environ.get("734880d5cb7f90a3035cc8a2f2aaaf0d"),
-                      "verification" : os.environ.get("8y24LeYQoqtzrKSRCBwO1h6u"),
+        self.oauth = {"client_id": os.environ.get("316861565828.320844681793"),
+                      "client_secret": os.environ.get("73445b95674ab686a97c3dcf1f849b7e"),
+                      "verification" : os.environ.get("F9N2Aa9B2MBpUdTkBXpUydSR"),
                       # Scopes provide and limit permissions to what our app
                       # can access. It's important to use the most restricted
                       # scope that your app will need.
                       "scope": "general"}
-        self.verification = os.environ.get("8y24LeYQoqtzrKSRCBwO1h6u")
+        self.verification = os.environ.get("F9N2Aa9B2MBpUdTkBXpUydSR")
 
         # NOTE: Python-slack requires a client connection to generate
         # an oauth token. We can connect to the client without authenticating
