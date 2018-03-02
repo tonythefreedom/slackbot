@@ -136,21 +136,26 @@ def hears():
     # If the incoming request is an Event we've subcribed to
     #if "event" in slack_event:
         event_type = slack_event["event"]["type"]
-        print(slack_event)
+        print("event_type : " + event_type)
         print("team_id : " + slack_event["team_id"])
         #print("user : " + slack_event["event"]["user"])
         print("channel : " + slack_event["event"]["channel"])
+        print("all data : " + slack_event["event"])
         # Then handle the event by event_type and have your bot respond
 
         thisBrain = brain.Brain()
-        thisBrain.sendMSG("hello fellows!! Never mind. This is Slack bot test.")
+        # C9B01UEAH : 1 is general
+        # C9GCPQACX : 2 is 아네모 인공지능 2기
+        if event_type == "team_join" :
+            thisBrain.sendMSG("새로운 멤버가 오셨군요. 왼쪽 채널을 클릭하시면 다양한 주제의 채널에서 대화를 나누실 수 있습니다. 참고하세요.", 1)
+#        elif event_type == "message" and slack_event["event"]["channel"] == "C9GCPQACX" :
+#            thisBrain.sendMSG("지금은 테스트 중이니 같은말이 날아가더라도 이해해 주세요...", 2)
 
         return _event_handler(event_type, slack_event)
     # If our bot hears things that are not events we've subscribed to,
     # send a quirky but helpful error response
 
-    return make_response("[NO EVENT IN SLACK REQUEST] These are not the droids\
-                         you're looking for.", 404, {"X-Slack-No-Retry": 1})
+    return make_response("[NO EVENT IN SLACK REQUEST] These are not the droids you're looking for.", 404, {"X-Slack-No-Retry": 1})
 
 
 if __name__ == '__main__':
